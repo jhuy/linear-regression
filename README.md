@@ -2,9 +2,9 @@
 
 Supervised machine learning attempting to calculate the best:
 
-theta0,theta1
-w,b
-slope, intercept
+* theta0,theta1
+* w,b
+* slope, intercept
 
 Whatever or however you learn it, and finding the optimal values using the cost function J.
 
