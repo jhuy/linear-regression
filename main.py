@@ -14,7 +14,7 @@ theta0 = 2
 # slope
 theta1 = 0
 # learning rate
-alpha = 0.12
+alpha = 0.01
 
 # Generates random numbers to be linear regressed
 x_coor = np.linspace(lowest_int,highest_int, num = num_rand_ints)
@@ -41,21 +41,21 @@ def new_theta_function (alpha, theta0, theta1, x, y):
     new_theta0 = float(theta0 - (alpha/num_rand_ints) * sum_theta_function_x(theta0, theta1, x, y))
     new_theta1 = float(theta1 - (alpha/num_rand_ints) * sum_theta_function_y(theta0, theta1, x, y))
     cost = (1/(2*num_rand_ints)) * sum_y_coordinates(theta0, theta1, x, y)
-    # print ([new_theta0, new_theta1, cost])
+    print ([new_theta0, new_theta1, cost])
     return [new_theta0, new_theta1, cost]
 
-#sum(theta0 + theta1*x - y)
+#sum((theta0 + theta1*x -y)*x)
 def sum_theta_function_x (theta0, theta1, x, y):
     total = 0
     for index in range(0, num_rand_ints):
-        total += float(theta0 + theta1*x.iloc[index] - y.iloc[index])
+        total += float((theta0*x.iloc[index] + theta1 - y.iloc[index])*x.iloc[index])
     return total
 
-#sum((theta0 + theta1*x -y)*x)
+#sum(theta0 + theta1*x - y)
 def sum_theta_function_y (theta0, theta1, x, y):
     total = 0
     for index in range(0, num_rand_ints):
-        total += float((theta0 + theta1*x.iloc[index] - y.iloc[index])*x.iloc[index])
+        total += float(theta0*x.iloc[index] + theta1 - y.iloc[index])
     return total
 
 def sum_y_coordinates (theta0, theta1, x, y):
